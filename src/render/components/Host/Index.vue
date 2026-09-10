@@ -117,9 +117,10 @@
 
   const appStore = AppStore()
   const setupStore = SetupStore()
+  const unlicensedSiteLimit = 999
 
   const isLock = computed(() => {
-    return !setupStore.isActive && appStore.hosts.length > 2
+    return !setupStore.isActive && appStore.hosts.length >= unlicensedSiteLimit
   })
 
   const tabs = computed(() => {

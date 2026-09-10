@@ -41,6 +41,8 @@ import { HostsFileLinux, HostsFileMacOS, HostsFileWindows } from '@shared/PlatFo
 import { AppHelperCheck } from '@shared/AppHelperCheck'
 import { reconcileSystemHostsBlock } from './SystemHostsBlock'
 
+const UNLICENSED_SITE_LIMIT = 999
+
 export class Host extends Base {
   hostsFile = ''
 
@@ -153,7 +155,7 @@ export class Host extends Base {
 
       let isLock = false
       if (!global.Server.Licenses) {
-        isLock = hostList.length > 2
+        isLock = hostList.length >= UNLICENSED_SITE_LIMIT
       } else {
         const getRSAKey = () => {
           const a = '0+u/eiBrB/DAskp9HnoIgq1MDwwbQRv6rNxiBK/qYvvdXJHKBmAtbe0+SW8clzne'
